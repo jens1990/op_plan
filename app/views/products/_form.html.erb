@@ -1,0 +1,45 @@
+<%= form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label 'Name' %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label 'Rüstzeit' %>
+      <%= f.text_field :setup_time %>
+    </div>
+    <div class="field">
+      <%= f.label 'Bearbeitungszeit' %>
+      <%= f.text_field :processing_time %>
+    </div>
+    <div class="field">
+      <%= f.label 'Rüstkostensatz' %>
+      <%= f.text_field :setup_cost %>
+    </div>
+    <div class="field">
+      <%= f.label 'Lagerkostensatz' %>
+      <%= f.text_field :holding_cost %>
+    </div>
+    <div class="field">
+      <%= f.label 'Lageranfangsbestand' %>
+      <%= f.text_field :initial_inventory %>
+    </div>
+    <div class="field">
+      <%= f.label 'Vorlaufverschiebung' %>
+      <%= f.text_field :lead_time_periods %>
+    </div>
+  <div class="actions">
+    <%= f.submit 'Produkt anlegen oder aktualisieren' %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Produkt:</b>
+  <%= @product_machine.product.name %>
+</p>
+
+
+<p>
+  <b>Maschine:</b>
+  <%= @product_machine.machine.name %>
+</p>
+
+
+
+
+<%= link_to 'Ändern', edit_product_machine_path(@product_machine) %> |
+<%= link_to 'Zurück', product_machines_path %>

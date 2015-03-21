@@ -1,0 +1,33 @@
+<h1>Edit Specialties of the rooms</h1>
+
+<p><strong><%= OperatingRoom.find(@oprid).name %></strong> is assigned to the following Specialties:</p>
+<table  id="room_specialties" class="display">
+  <thead>
+  <tr>
+    <th>Specialty </th>
+    <th>Status</th>
+    <th></th>
+   </tr>
+  </thead>
+  <tbody>
+      <tr>
+      <% @specialty = Specialty.all %>
+  	  <% @specialty.each do |spid| %>
+      <th><%=  Specialty.where(id: spid.id).first.name %></th>
+       <th><% if RoomSpecialty.where(operating_room_id: @oprid).where(specialty_id: spid.id).exists?
+       	status=1 else status=0 end %><%= if status==1
+	  	"Assigned"
+	  	else 
+	  "Not assigned"
+	  end  %>	</th>
+      <th><%= if status==1
+      	button_to "Unassign!", :controller => 'room_specialties', :action => 'unassign', :spid => spid.id
+      	else button_to "Assign!", :controller => 'room_specialties', :action => 'assign', :spid => spid.id
+      		end %></th>
+	  </tr>
+  	  <% end %>
+  </tbody>
+</table>
+<br />
+
+<%= link_to 'Back to operating-room overview', operating_rooms_path %>

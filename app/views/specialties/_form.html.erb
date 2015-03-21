@@ -1,0 +1,31 @@
+<%= form_for(@specialty) do |f| %>
+  <% if @specialty.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@specialty.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @specialty.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+    <div class="field">
+      <%= f.label 'Shortcode (max 3 letters)' %><br />
+      <%= f.text_field :shortcode %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Name' %><br />
+      <%= f.text_field :name %>
+    </div>
+
+
+    <div class="actions">
+    <%= f.submit 'Create or update specialty', data: {confirm: 'Warning! Previous calculations will not be correct anymore. Please create and use a new calculation to create a new operating-room plan.'} %>
+    </div>
+
+<% end %>

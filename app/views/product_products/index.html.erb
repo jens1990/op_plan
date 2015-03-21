@@ -1,0 +1,37 @@
+<h1>Übersicht der Produkte-Produkte-Relationen</h1>
+<table id="product_periods" class="display">
+  <thead>
+  <tr>
+    <th>Von Produkt</th>
+    <th>Zu Produkt</th>
+    <th>Koeffizient</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+
+
+  <% @product_products.each do |product_product| %>
+      <tr>
+        <td><%= product_product.from_product.name %></td>
+        <td><%= product_product.to_product.name %></td>
+        <td><%= product_product.coefficient %></td>
+        <td><%= link_to 'Ändern', edit_product_product_path(product_product) %></td>
+        <td><%= link_to 'Löschen', product_product, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Neue Produkt-Produkt-Relation anlegen', new_product_product_path %><br>  <br>
+
+
+<%= link_to 'Zurück zur Losgrößenplanung', mlclsp_start_path %>
+

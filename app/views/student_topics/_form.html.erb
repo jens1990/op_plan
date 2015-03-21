@@ -1,0 +1,29 @@
+<%= form_for(@student_topic) do |f| %>
+  <% if @student_topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student_topic.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @student_topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Student' %><br />
+    <%= f.collection_select :student_id, Student.all, :id, :name %>
+  </div>
+    <div class="field">
+      <%= f.label 'Thema' %><br />
+      <%= f.collection_select :topic_id, Topic.all, :id, :title %>
+    </div>
+    <div class="field">
+      <%= f.label 'Praeferenz' %><br />
+      <%= f.select :preference, 1..5 %>
+      </div>
+  <div class="actions">
+    <%= f.submit 'Praeferenz anlegen oder aktualisieren' %>
+  </div>
+<% end %>

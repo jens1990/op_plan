@@ -1,0 +1,48 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Name:</b>
+  <%= best_in_place @product, :name %>
+</p>
+
+
+<p>
+  <b>Rüstzeit:</b>
+  <%= best_in_place @product, :setup_time %>
+</p>
+
+
+<p>
+  <b>Bearbeitungszeit:</b>
+  <%= best_in_place @product, :processing_time %>
+</p>
+
+
+<p>
+  <b>Rüstkostensatz:</b>
+  <%= best_in_place @product, :setup_cost %>
+</p>
+
+
+<p>
+  <b>Lagerkostensatz:</b>
+  <%= best_in_place @product, :holding_cost %>
+</p>
+
+
+<p>
+  <b>Lageranfangsbestand:</b>
+  <%= best_in_place @product, :initial_inventory %>
+</p>
+
+
+<p>
+  <b>Vorlaufverschiebung:</b>
+  <%= best_in_place @product, :lead_time_periods %>
+</p>
+
+
+
+<%= link_to 'Ändern', edit_product_path(@product) %> |
+<%= link_to 'Zurück', products_path %>

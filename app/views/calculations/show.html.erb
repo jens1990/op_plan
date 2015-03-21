@@ -1,0 +1,22 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>ID:</b>
+  <%= @calculation.id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @calculation.user_id %>
+</p>
+
+<p>
+  <b>Workhours:</b>
+  <%= @calculation.workhours_perDay %>
+</p>
+
+
+
+<%= link_to 'Edit calculation', edit_calculation_path(@calculation) %> |
+<%= link_to 'Back to calculation overview', calculations_path %>

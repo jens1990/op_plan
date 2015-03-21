@@ -1,0 +1,15 @@
+<!--<p id="notice"><%= notice %></p>-->
+
+<p>
+  <b>Angebotsort:</b>
+  <%= @supplysite.site.name %>
+</p>
+
+<p>
+  <b>Angebotsmenge:</b>
+  <%= @supplysite.supply_quantity %>
+</p>
+
+
+<%= link_to 'Ändern', edit_supplysite_path(@supplysite) %> |
+<%= link_to 'Zurück', supplysites_path %>

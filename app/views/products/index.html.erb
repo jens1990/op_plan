@@ -1,0 +1,41 @@
+<h1>Übersicht der Produkte</h1>
+<table id="products" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Rüstzeit</th>
+    <th>Bearbeitungszeit</th>
+    <th>Rüstkostensatz</th>
+    <th>Lagerkostensatz</th>
+    <th>Lageranfang</th>
+    <th>Vorlauf</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.setup_time %></td>
+        <td><%= product.processing_time %></td>
+        <td><%= product.setup_cost %></td>
+        <td><%= product.holding_cost %></td>
+        <td><%= product.initial_inventory %></td>
+        <td><%= product.lead_time_periods %></td>
+        <td><%= link_to 'Zeigen', product %></td>
+        <td><%= link_to 'Ändern', edit_product_path(product) %></td>
+        <td><%= link_to 'Löschen', product, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Neues Produkt anlegen', new_product_path %><br>  <br>
+<%= link_to 'Zurück zur Losgrößenplanung', mlclsp_start_path %>
+

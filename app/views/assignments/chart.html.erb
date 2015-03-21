@@ -1,0 +1,12 @@
+<h1>Room distribution Calculation <%= params[:id] %></h1>
+<%= column_chart @assignmentc.map{|assign|
+    {name: Specialty.find(assign.specialty_id).name + " " + OperatingRoom.where(id: assign.operating_room_id).first.name,
+    	data: {"Mon"=>assign.Mon,"Tue"=>assign.Tue,"Wed"=>assign.Wed,"Thu"=>assign.Thu,"Fri"=>assign.Fri}
+    	}
+} %>
+<% if current_user.admin? %>
+<%= link_to 'See Statistics for this calculation...', stat_path(@assignmentc.first.calculation_id) %>
+<% end %>
+<br /><br />
+<%= link_to 'Back to the Assignments', assignments_path %>
+

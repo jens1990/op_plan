@@ -1,0 +1,66 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<br/>
+<h1>Statistics for Calculation ID <%= params[:id] %></h1>
+<table  id="stats" class="display">
+  <thead>
+  <tr>
+    <th>Specialty</th>
+    <th>Day</th>
+    <th>not Satisfied Demand (Outpatient)</th>
+    <th>not Satisfied Demand (Inpatient)</th>
+    <th>Idle Time</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @statsu.each do |stat| %>
+      <tr>
+        <td><%= Specialty.find(stat.specialty_id).name %></td>
+        <td><%= stat.day %></td>
+        <td><%= stat.not_sat_out %></td>
+        <td><%= stat.not_sat_in %></td>
+        <td><%= stat.idle_time %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Back to Calculations', calculations_path %>
+<br/><br/>
+<% @specz = @statsu.map(&:specialty_id).uniq %>
+<h2>not Satisfied Demand (Outpatient)</h2>
+<%= column_chart @specz.map{|stat|
+    {name: Specialty.find(stat).name,
+    	data: {"Mon"=>@statsu.where(specialty_id: stat).where(day: "Mon").first.not_sat_out,
+    			"Tue"=>@statsu.where(specialty_id: stat).where(day: "Tue").first.not_sat_out,
+    			"Wed"=>@statsu.where(specialty_id: stat).where(day: "Wed").first.not_sat_out,
+    			"Thu"=>@statsu.where(specialty_id: stat).where(day: "Thu").first.not_sat_out,
+    			"Fri"=>@statsu.where(specialty_id: stat).where(day: "Fri").first.not_sat_out}
+    	}
+} %>
+<br />
+<h2>not Satisfied Demand (Inpatient)</h2>
+<%= column_chart @specz.map{|stat|
+    {name: Specialty.find(stat).name,
+    	data: {"Mon"=>@statsu.where(specialty_id: stat).where(day: "Mon").first.not_sat_in,
+    			"Tue"=>@statsu.where(specialty_id: stat).where(day: "Tue").first.not_sat_in,
+    			"Wed"=>@statsu.where(specialty_id: stat).where(day: "Wed").first.not_sat_in,
+    			"Thu"=>@statsu.where(specialty_id: stat).where(day: "Thu").first.not_sat_in,
+    			"Fri"=>@statsu.where(specialty_id: stat).where(day: "Fri").first.not_sat_in}
+    	}
+} %>
+<br />
+<h2>Idle Time</h2>
+<%= column_chart @specz.map{|stat|
+    {name: Specialty.find(stat).name,
+    	data: {"Mon"=>@statsu.where(specialty_id: stat).where(day: "Mon").first.idle_time,
+    			"Tue"=>@statsu.where(specialty_id: stat).where(day: "Tue").first.idle_time,
+    			"Wed"=>@statsu.where(specialty_id: stat).where(day: "Wed").first.idle_time,
+    			"Thu"=>@statsu.where(specialty_id: stat).where(day: "Thu").first.idle_time,
+    			"Fri"=>@statsu.where(specialty_id: stat).where(day: "Fri").first.idle_time}
+    	}
+} %>

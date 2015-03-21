@@ -1,0 +1,133 @@
+
+option optcr = 0.000;
+option reslim = 1800;
+option iterlim = 1000000;
+
+Sets
+            k               Produkte
+            j               Ressourcen
+            t               Perioden
+            kta             Assoziation-Produkt-Periode
+            jta             Assoziation-Maschine-Periode
+            KJ(k,j)         Produkt-Maschinen-Zuordnung
+            JT(j,t)         Ressourcen-Perioden-Relation
+            KT(k,t)         Produkte-Perioden-Relation
+            KK(k,k)         Produkte-Produkte-Relation
+            KTaKT(kta,k,t)
+            JTaJT(jta,j,t)
+            ;
+
+alias(k,i);
+
+Parameters
+            h(k)           Lagerkostensatz
+            z(k)            Vorlaufverschiebung
+            s(k)            Rüstkosten
+            tp(k)           Stückbearbeitungszeit
+            ts(k)           Rüstzeit
+            y_0(k)          Lageranfangsbestand
+            a(k,i)          Direktbedarfskoeffizient
+            C(j,t)          verfügbare Kapazität
+            D(k,t)          Primärbedarf
+            BigM            hinreichend große Zahl
+            oc(j)           Überstundenkostensatz;
+
+Binary Variables
+         gamma(k,t)         Rüstvariable;
+
+Variables
+         ZFkt               Zielfunktionswert;
+
+Positive variables
+         q(k,t)             Produktionsmenge
+         y(k,t)             Lagerbestand
+         o(j,t)             Überstunden;
+
+Equations
+         cost               Zielfunktion
+         LagBil(k,t)        Lagerbilanzgleichung
+         Kapa(j,t)          Kapazitätsrestriktion
+         ProdRes(k,t)         Produktionsrestriktion;
+
+cost             ..
+         ZFkt =e= SUM((k,t), h(k) * y(k,t))  + SUM((k,t), s(k) * gamma(k,t))
+                 +SUM((j,t),oc(j)*o(j,t));
+
+LagBil(k,t)      ..
+         y_0(k)$(ord(t)=1) + y(k,t-1)$(ord(t)>1) + q(k,t-z(k)) - SUM(i,a(k,i)*q(i,t)) - y(k,t) =e= d(k,t);
+
+Kapa(j,t)        ..
+         SUM(k$KJ(k,j), tp(k) * q(k,t) + ts(k) * gamma(k,t)) =l= C(j,t)+o(j,t);
+
+ProdRes(k,t)  ..
+         q(k,t) - gamma(k,t) * BigM =l= 0;
+
+*Model mlclsp /all/;
+Model mlclsp /
+    cost
+    ,LagBil
+    ,Kapa
+    ,ProdRes
+    /;
+
+
+
+$include "MLCLSP_Input.inc";
+
+BigM=sum((k,t),d(k,t));
+
+
+display h, z, s, tp, ts, y_0, a, d, BigM, c;
+
+
+mlclsp.limrow=100;
+mlclsp.limcol=100;
+
+
+
+solve mlclsp using MIP minimizing ZFkt;
+
+
+
+file outputfile1 / 'MLCLSP_solution_kt.txt'/;
+put outputfile1;
+
+
+loop(k,
+     loop(t,
+         loop(kta$KTaKT(kta,k,t),
+             put kta.tl:0, ' ; ' k.tl:0, ' ; ' t.tl:0, ' ; ', q.l(k,t), ' ; ', y.l(k,t) , ' ; ', gamma.l(k,t) /
+         );
+     );
+);
+
+putclose outputfile1;
+
+file outputfile2 / 'MLCLSP_solution_jt.txt'/;
+put outputfile2;
+
+
+loop(j,
+     loop(t,
+         loop(jta$JTaJT(jta,j,t),
+             put jta.tl:0, ' ; ' j.tl:0, ' ; ' t.tl:0, ' ; ', o.l(j,t) /
+         );
+     );
+);
+
+putclose outputfile2;
+
+
+
+
+file outputfile3 / 'MLCLSP_ofv.txt'/;
+put outputfile3;
+
+
+put 'Zielfunktionswert:  ',ZFkt.l /
+put '**************************'
+
+putclose outputfile3;
+
+
+

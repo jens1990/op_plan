@@ -1,0 +1,30 @@
+<h1>Übersicht der Orte</h1>
+<table  id="sites" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Codename</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @sites.each do |site| %>
+      <tr>
+        <td><%= site.name %></td>
+        <td><%= site.codename %></td>
+        <td><%= link_to 'Zeigen', site %></td>
+        <td><%= link_to 'Ändern', edit_site_path(site) %></td>
+        <td><%= link_to 'Löschen', site, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Neuen Ort anlegen', new_site_path %><br>  <br>
+<%= link_to 'Zurück zur Transportplanung', transport_start_path %>
+

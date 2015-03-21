@@ -1,0 +1,39 @@
+<%= form_for(@product_product) do |f| %>
+    <% if @product_product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@product_product.errors.count, "error") %> prohibited this product_product from being
+            saved:</h2>
+
+          <ul>
+            <% @product_product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= f.label 'Von Produkt' %><br />
+      <%= f.collection_select :from_product_id, Product.all, :id, :name %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label 'Zu Produkt' %><br />
+      <%= f.collection_select :to_product_id, Product.all, :id, :name %>
+    </div>
+
+
+
+
+
+    <div class="field">
+      <%= f.label 'Koeffizient' %>
+      <%= f.text_field :coefficient %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Produkt-Produkt-Relation anlegen oder aktualisieren' %>
+    </div>
+<% end %>

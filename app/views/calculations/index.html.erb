@@ -1,0 +1,57 @@
+<%= form_tag("/assignments/gamspfadassignment") do %>
+    <%= label_tag(:gamspath, "Please enter gamspath") %>
+    <%= text_field_tag :gamspath, nil, placeholder: "Default path: C:\\GAMS\\win64\\24.1\\gams Operationssaalplanung" %>
+    <%= submit_tag %>
+<% end %>
+<strong>Actual gams path:</strong><br />
+<%= if !$gamspath.nil?
+	$gamspath else
+	"Default (C:\\GAMS\\win64\\24.1\\gams Operationssaalplanung) path"
+	end %><br /><%= button_to "Test gams path", :controller => 'assignments', :action => 'test' %>
+
+<br/>
+<h1>Overview latest calculations</h1>
+<table  id="calculations" class="display">
+  <thead>
+  <tr>
+    <th>Calculation ID</th>
+    <th>by User</th>
+    <th>Workhours</th>
+    <th> </th>
+    <th> </th>
+    <th></th>
+    <th>Aggregation</th>
+    <th>Optimize</th>
+    <th>Statistics </th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @calculations.each do |calculation| %>
+      <tr>
+        <td><%= calculation.id %></td>
+        <td><%= User.find(calculation.user_id).name %></td>
+        <td><%= calculation.workhours_perDay %></td>
+
+        <td><%= link_to 'Show', calculation %></td>
+        <td><%= link_to 'Delete', calculation, method: :delete, data: {confirm: 'Are you sure? Please confirm.'} %></td>
+        <td><%= button_to "Aggregate", :controller => 'calculations', :action => 'aggregate', :id => calculation %></td>
+        <td><%= link_to 'View or Modify', demand0_path(calculation) %></td>
+        <td><%= if Assignment.where(calculation_id: calculation.id).empty?
+        	button_to "Optimize", :controller => 'assignments', :action => 'optimize', :id => calculation
+        	else button_to "Delete Assignment", :controller => 'assignments', :action => 'destroyid', :id => calculation end %></td>
+        <td><%= if Assignment.where(calculation_id: calculation.id).exists?
+        	link_to 'Stats', stat_path(calculation)
+        	else "has not been calculated" end %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= button_to "Delete all calculations", {:controller => 'calculations', :action => 'erase_calculations'}, :confirm => 'Are you sure? This will delete all calculations. Please confirm.' %>
+
+<br/>
+
+<%= link_to 'Create a new calculation', new_calculation_path %><br>  <br>
+<%= link_to 'Back to operating-room planning', operationsplan_start_path %>
+

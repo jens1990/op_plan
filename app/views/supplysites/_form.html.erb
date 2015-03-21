@@ -1,0 +1,26 @@
+<%= form_for(@supplysite) do |f| %>
+  <% if @supplysite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supplysite.errors.count, "error") %> prohibited this supplysite from being saved:</h2>
+
+      <ul>
+      <% @supplysite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Code auswählen' %><br />
+    <%= f.collection_select :site_id, Site.all, :id, :codename %>
+  </div>
+  <div class="field">
+    <%= f.label 'Angebotsmenge eingeben' %><br />
+    <%= f.text_field :supply_quantity %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Angebotsort anlegen oder aktualisieren" %>
+  </div>
+<% end %>
+

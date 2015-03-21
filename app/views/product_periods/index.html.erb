@@ -1,0 +1,45 @@
+<h1>Übersicht der Produkte-Perioden</h1>
+<table id="product_periods" class="display">
+  <thead>
+  <tr>
+    <th>Produkt</th>
+    <th>Periode</th>
+    <th>Nachfrage</th>
+    <th>Produktion</th>
+    <th>Lager</th>
+    <th>Rüsten</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+
+
+  <% @product_periods.each do |product_period| %>
+      <tr>
+        <td><%= product_period.product.name %></td>
+        <td><%= product_period.period.name %></td>
+        <td><%= product_period.demand %></td>
+        <td><%= product_period.production %></td>
+        <td><%= product_period.inventory %></td>
+        <td><%= product_period.setup %></td>
+        <td><%= link_to 'Ändern', edit_product_period_path(product_period) %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+
+
+<br />
+
+<% if @objective_function_value!=nil %>
+    Die Kosten betragen <%=   @objective_function_value %> Geldeinheiten!   <br>   <br>
+<% end %>
+
+<%= link_to 'Zurück zur Losgrößenplanung', mlclsp_start_path %>
+

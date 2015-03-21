@@ -1,0 +1,39 @@
+<h1>Overview operating-rooms</h1>
+<p>Note that one operating room is always reserved for emergencies. This reserved room should not be included in the database.</p>
+<table  id="operating_rooms" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Amount</th>
+    <% if current_user.admin? %>
+    <th>Specialties</th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @operating_rooms.each do |operating_room| %>
+      <tr>
+        <td><%= operating_room.name %></td>
+        <td><%= operating_room.amount %></td>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Edit Specialties', edit_room_specialty_path(operating_room) %></td>
+        <td><%= link_to 'Show', operating_room %></td>
+        <td><%= link_to 'Edit', edit_operating_room_path(operating_room) %></td>
+        <td><%= link_to 'Delete', operating_room, method: :delete, data: {confirm: 'Are you sure? Please confirm.'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<% if current_user.admin? %>
+<%= link_to 'Create a new operating-room', new_operating_room_path %><br>  <br>
+<% end %>
+<%= link_to 'Back to operating-room planning', operationsplan_start_path %>
+

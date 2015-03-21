@@ -1,0 +1,116 @@
+
+--- Job Operationssaalplanung.gms Start 03/11/15 21:20:58 WEX-WEI 24.0.2 x86_64/MS Windows     
+GAMS Rev 240  Copyright (C) 1987-2013 GAMS Development. All rights reserved
+Licensee: Kurslizenz                                     S140303/0001AW-GEN
+          Leibniz University Hannover, Lehrstuhl fuer ProduktionswirtDC6657
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- Operationssaalplanung.gms(46) 2 Mb
+--- .Operationsplan_Input.inc(102) 3 Mb
+--- Operationssaalplanung.gms(127) 3 Mb
+--- Starting execution: elapsed 0:00:00.003
+--- Operationssaalplanung.gms(75) 4 Mb
+--- Generating MIP model Operationssaal
+--- Operationssaalplanung.gms(197) 4 Mb
+---   181 rows  310 columns  1,278 non-zeroes
+---   20 discrete-columns
+***
+***   20 Integer +INF Bounds have been reset to 100
+***
+--- Executing CPLEX: elapsed 0:00:00.137
+
+IBM ILOG CPLEX   Feb 14, 2013 24.0.2 WEX 38380.38394 WEI x86_64/MS Windows    
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.5.0.0
+
+Reading data...
+Starting Cplex...
+Tried aggregator 2 times.
+MIP Presolve eliminated 136 rows and 239 columns.
+MIP Presolve modified 6 coefficients.
+Aggregator did 10 substitutions.
+Reduced MIP has 35 rows, 61 columns, and 161 nonzeros.
+Reduced MIP has 0 binaries, 10 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (0.34 ticks)
+Found incumbent of value 21705.500100 after 0.05 sec. (0.41 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 35 rows, 61 columns, and 161 nonzeros.
+Reduced MIP has 0 binaries, 10 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.05 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+Aggregator did 8 substitutions.
+Reduced LP has 27 rows, 53 columns, and 148 nonzeros.
+Presolve time = 0.00 sec. (0.04 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           120.000000
+Initializing dual steep norms . . .
+Root relaxation solution time = 0.00 sec. (0.13 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        21705.5001        0.0000       20  100.00%
+Found incumbent of value 21705.500100 after 0.06 sec. (0.63 ticks)
+      0     0     2856.0000     3    21705.5001     2856.0000       20   86.84%
+*     0+    0                         3437.2500     2856.0000       20   16.91%
+Found incumbent of value 3437.250000 after 0.08 sec. (0.69 ticks)
+      0     0     2856.0000     1     3437.2500       Cuts: 9       22   16.91%
+*     0+    0                         3049.7500     2856.0000       22    6.35%
+Found incumbent of value 3049.750000 after 0.08 sec. (0.92 ticks)
+
+Mixed integer rounding cuts applied:  4
+Gomory fractional cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.45 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.45 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 0.09sec (det. 0.93 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 162 rows and 279 columns.
+Aggregator did 6 substitutions.
+Reduced LP has 13 rows, 25 columns, and 59 nonzeros.
+Presolve time = 0.00 sec. (0.14 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual infeasibility =             0.000000
+Iteration:     2   Dual objective     =           232.000000
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.25 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:         3049.750000    (22 iterations, 0 nodes)
+Final Solve:          3049.750000    (9 iterations)
+
+Best possible:        2856.000000
+Absolute gap:          193.750000
+Relative gap:            0.063530
+
+--- Restarting execution
+--- Operationssaalplanung.gms(197) 2 Mb
+--- Reading solution for model Operationssaal
+--- Executing after solve: elapsed 0:00:00.834
+--- Operationssaalplanung.gms(202) 3 Mb
+
+GDXXRW           Feb 14, 2013 24.0.2 WIN 38380.38394 VS8 x86/MS Windows       
+Input file : E:\Sites\omapps_and4\result.gdx
+Output file: E:\Sites\omapps_and4\result.xlsx
+Total time = 688 Ms
+--- Operationssaalplanung.gms(229) 3 Mb
+--- Putfile outputfile1 E:\Sites\omapps_and4\Saalzuordnung.txt
+--- Putfile outputfile2 E:\Sites\omapps_and4\Saalzuordnung_Statistik.txt
+*** Status: Normal completion
+--- Job Operationssaalplanung.gms Stop 03/11/15 21:21:00 elapsed 0:00:01.661

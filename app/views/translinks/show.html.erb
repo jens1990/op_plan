@@ -1,0 +1,25 @@
+<!--<p id="notice"><%= notice %></p>-->
+
+<p>
+  <b>Angebotsort</b>
+  <%= @translink.supplysite_id %>
+</p>
+
+<p>
+  <b>Nachfrageort</b>
+  <%= @translink.demandsite_id %>
+</p>
+
+<p>
+  <b>Einheitstransportkostensatz</b>
+  <%= @translink.unit_cost %>
+</p>
+
+<p>
+  <b>Transportmenge</b>
+  <%= @translink.transport_quantity %>
+</p>
+
+
+<%= link_to 'Ändern', edit_translink_path(@translink) %> |
+<%= link_to 'Zurück', translinks_path %>

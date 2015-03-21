@@ -1,0 +1,34 @@
+<% provide(:title, 'MLCLSP') %>
+<h1>Losgrößenplanung mit dem MLCLSP</h1>
+<p>
+  Auf dieser Seite startet die Losgrößenplanung! <br> <br>
+
+  <%= link_to "Verwaltung der Produkte!", products_path %><br>
+  <%= link_to "Verwaltung der Maschinen!", machines_path %><br>
+  <%= link_to "Verwaltung der Perioden!", periods_path %><br>
+  <%= link_to "Verwaltung der Produkte-Produkte-Kombinationen!", product_products_path %><br>
+  <%= link_to "Verwaltung der Produkte-Perioden-Kombinationen!", product_periods_path %><br>
+  <%= link_to "Verwaltung der Produkte-Maschinen-Kombinationen!", product_machines_path %><br>
+  <%= link_to "Verwaltung der Maschinen-Perioden-Kombinationen!", machine_periods_path %><br>
+
+</p>
+
+<br>
+
+
+<% if signed_in? %>
+
+
+
+    <p>
+
+      Nach der Eingabe der Daten können wir nun endlich optimieren!
+
+      <%= button_to "Lösche den Produktions- und Lagerplan", :controller => 'product_periods', :action => 'delete_old_plan' %>
+      <%= button_to "Optimiere", :controller => 'product_periods', :action => 'optimize' %>
+      <%= button_to "Lies die Ergebnisse ein", :controller => 'product_periods', :action => 'read_optimization_results' %>
+      <%= button_to "Lies den Zielfunktionswert ein", :controller => 'product_periods', :action => 'read_and_show_ofv' %>
+
+    </p>
+
+<% end %>

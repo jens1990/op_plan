@@ -1,0 +1,30 @@
+<% provide(:title, 'Transportplanung') %>
+<h1>Klassisches Transportmodell</h1>
+<p>
+Auf dieser Seite startet die Transportplanung!    <br>     <br>
+
+<%= link_to "Hier geht es zur Verwaltung der Orte!", sites_path %><br>
+<%= link_to "Hier geht es zur Verwaltung der Angebotsdaten!", supplysites_path %><br>
+<%= link_to "Hier geht es zur Verwaltung der Nachfragedaten!", demandsites_path %><br>
+<%= link_to "Hier geht es zur Verwaltung der Transportrelationen!", translinks_path %><br>
+</p>
+
+<br>
+
+
+<% if signed_in? %>
+
+
+
+<p>
+
+Nach der Eingabe der Daten können wir nun endlich optimieren!
+
+  <%= button_to "Lösche Transportmengen", :controller => 'translinks', :action =>  'delete_transportation_quantities'  %>
+  <%= button_to "Optimiere", :controller => 'translinks', :action =>  'optimize'  %>
+  <%= button_to "Lies die Transportmengen ein", :controller => 'translinks', :action =>  'read_transportation_quantities'  %>
+  <%= button_to "Lies den Zielfunktionswert ein", :controller => 'translinks', :action =>  'read_and_show_ofv'  %>
+
+</p>
+
+<% end %>

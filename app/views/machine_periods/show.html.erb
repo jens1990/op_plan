@@ -1,0 +1,31 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+
+
+<p>
+  <b>Maschine:</b>
+  <%= @machine_period.machine.name %>
+</p>
+
+
+<p>
+  <b>Period:</b>
+  <%= @machine_period.period.name%>
+</p>
+
+
+<p>
+  <b>Kapazität:</b>
+  <%= best_in_place @machine_period, :capacity %>
+</p>
+
+<p>
+  <b>Überstunden:</b>
+  <%= best_in_place @machine_period, :overtime %>
+</p>
+
+
+
+<%= link_to 'Ändern', edit_machine_period_path(@machine_period) %> |
+<%= link_to 'Zurück', machine_periods_path %>

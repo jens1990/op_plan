@@ -1,0 +1,22 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Name:</b>
+  <%= @operating_room.name %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @operating_room.amount %>
+</p>
+
+<p>
+  <b>Supported specialties:</b>
+  <%= @room_specialty%>
+</p>
+
+
+
+<%= link_to 'Edit operating-room', edit_operating_room_path(@operating_room) %> |
+<%= link_to 'Back to operating-room overview', operating_rooms_path %>

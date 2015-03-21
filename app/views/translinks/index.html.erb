@@ -1,0 +1,40 @@
+<h1>Übersicht der Transportrelationen</h1>
+
+<table class="table">
+  <tr>
+    <th>Angebotsort</th>
+    <th>Nachfrageort</th>
+    <th>Einheitstransportkostensatz</th>
+    <th>Ermittelte Transportmenge</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @translinks.each do |translink| %>
+  <tr>
+    <td><%= translink.supplysite.site.codename %></td>
+    <td><%= translink.demandsite.site.codename %></td>
+    <td><%= translink.unit_cost %></td>
+    <td><%= translink.transport_quantity %></td>
+    <td><%= link_to 'Ändern', edit_translink_path(translink) %></td>
+    <td><%= link_to 'Löschen', translink, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+
+<br />
+
+<% if @objective_function_value!=nil %>
+    Die Kosten betragen <%=   @objective_function_value %> Geldeinheiten!   <br>   <br>
+<% end %>
+
+<%= link_to 'Neue Transportrelation', new_translink_path %>
+
+
+<br>  <br>
+<%= link_to 'Zurück zur Transportplanung', transport_start_path %>

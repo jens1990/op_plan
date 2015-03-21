@@ -1,0 +1,51 @@
+<% provide(:title, 'Operationssaalplanung') %>
+<h1>Operating Plan Management Center</h1>
+<br>
+ <h4> Here starts the block-schedule planning (for signed-in users):</h4>
+<br />
+  <% if signed_in? %>
+<table class="buttontable">
+	<tr>
+		<td>
+<span class="opbutton">
+    <span class="opPlan"> <%= link_to "Show the latest operating plan!", assignments_path %></span><br>
+    </span>
+</td></tr>
+</table>
+<br>
+<br>
+	<h4>Data Management</h4>
+    <br>
+	
+	<table id="start" class="display" >
+  <thead>
+
+  </thead>
+<tbody>
+
+  <tr>
+       <td align="center"><%= link_to image_tag("glyphicons-530-list-alt.png", alt: "Specialty"), specialties_path %><br />
+    	<%= link_to "Specialty management", specialties_path %></td>
+    <td align="center"><%= link_to image_tag("glyphicons-496-bed.png", alt: "Operating Rooms"), operating_rooms_path %><br />
+    	<%= link_to "Operating room management", operating_rooms_path %></td>
+    <td align="center"><%= link_to image_tag("glyphicons-4-user.png", alt: "Patient"), patients_path %> <br />
+      <%= link_to "Patient management", patients_path %> </td>
+  </tr>
+ </tbody>
+</table>
+	
+      <br>
+      <br>
+
+  <% end %>
+
+  <% if current_user.admin? %>
+
+       <h2> Administrator Zone </h2>
+
+       <h4> Manage operating plans </h4><br />
+    <div class="center jumbotron"><%= link_to image_tag("glyphicons-158-show-thumbnails-with-lines.png", alt: "Calculations"), calculations_path %>
+<br />
+         <%= link_to "Calculations", calculations_path %><br></div>
+
+  <% end %>

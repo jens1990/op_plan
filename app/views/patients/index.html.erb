@@ -1,0 +1,40 @@
+
+<h1>Patient Overview</h1>
+<table  id="patients" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>OP Time</th>
+    <th>Assigned Specialty</th>
+    <th>Startday of Stay</th>
+    <th> </th>
+    <% if current_user.admin? %>
+    <th> </th>
+    <th> </th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.name %></td>
+        <td><%= patient.op_time %></td>
+        <td><%= link_to Specialty.where(id: patient.specialty_id).first.name, specialties_path %></td>
+        <td><%= patient.startday_of_stay %></td>
+        <td><%= link_to 'Show', patient %></td>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Delete', patient, method: :delete, data: {confirm: 'Are you sure? Please confirm.'} %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+<% if current_user.admin? %>
+<%= link_to 'Add new patient', new_patient_path %><br>  <br>
+<% end %>
+<%= link_to 'Back to operating-room planning', operationsplan_start_path %>
+

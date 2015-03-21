@@ -1,0 +1,15 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Student:</b>
+  <%= @student_topic.student_id %>
+  <b>Thema:</b>
+  <%= @student_topic.topic.title %>
+  <b>Präferenz:</b>
+  <%= @student_topic.preference %>
+</p>
+
+
+<%= link_to 'Ändern', edit_student_topic_path(@student_topic) %> |
+<%= link_to 'Zurück', student_topics_path %>

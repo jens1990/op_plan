@@ -1,0 +1,102 @@
+sets i / 
+OP1
+OP2
+/
+
+j / 
+ORT
+MOV
+HNO
+ONC
+/
+
+k / 
+Mon 
+Tue 
+Wed 
+Thu 
+Fri 
+/;
+
+IJ(i,j) = no;
+
+IJ('OP2','MOV') = yes;
+
+IJ('OP1','ORT') = yes;
+
+IJ('OP2','HNO') = yes;
+
+IJ('OP1','ONC') = yes;
+
+
+
+parameters
+a(i) /
+OP1 2
+OP2 3
+/
+
+tetaIPT /100/ 
+tetaOPT /100/ 
+Beta /0.5/ 
+;
+scalar 
+s /8/
+
+table 
+e(j,k) 
+		Mon		Tue		Wed		Thu		Fri		
+ORT		0		0		0		0		0
+MOV		0		0		0		0		3
+HNO		0		0		0		0		0
+ONC		0		0		0		0		0
+
+table 
+n(j,k) 
+		Mon		Tue		Wed		Thu		Fri		
+ORT		70		0		5		0		0
+MOV		0		0		0		0		0
+HNO		0		0		100		0		0
+ONC		0		0		0		0		0
+
+table 
+o(j,k) 
+		Mon		Tue		Wed		Thu		Fri		
+ORT		0		0		0		0		0
+MOV		0		0		0		0		4
+HNO		0		0		0		0		0
+ONC		0		30		0		0		0
+
+table 
+c(j,k) 
+
+		Mon		Tue		Wed		Thu		Fri		
+ORT		2		2		2		2		2		
+MOV		3		3		3		3		3		
+HNO		3		3		3		3		3		
+ONC		2		2		2		2		2		
+
+
+table 
+rho(k,l) 
+
+              Mon        Tue        Wed        Thu        Fri        
+ Mon          7          1          2          3          4
+ Tue          6          7          1          2          3
+ Wed          5          6          7          1          2
+ Thu          4          5          6          7          1
+ Fri          3          4          5          6          7
+
+table 
+lambda(k,l) 
+
+              Mon        Tue        Wed        Thu        Fri        
+ Mon          7          1          2          3          4
+ Tue          6          7          1          2          3
+ Wed          5          6          7          1          2
+ Thu          4          5          6          7          1
+ Fri          3          4          5          6          7
+
+scalar 
+cal /1/
+

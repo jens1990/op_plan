@@ -1,0 +1,40 @@
+<%= form_for(@demand1) do |f| %>
+  <% if @demand1.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@demand1.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @demand1.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="field">
+      <%= f.label 'Monday' %><br />
+      <%= f.text_field :Mon %>
+    </div>
+    <div class="field">
+      <%= f.label 'Tuesday' %><br />
+      <%= f.text_field :Tue %>
+    </div>
+    <div class="field">
+      <%= f.label 'Wednesday' %><br />
+      <%= f.text_field :Wed %>
+    </div>
+    <div class="field">
+      <%= f.label 'Thursday' %><br />
+      <%= f.text_field :Thu %>
+    </div>
+    <div class="field">
+      <%= f.label 'Friday' %><br />
+      <%= f.text_field :Fri %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit 'Update Demands' %>
+    </div>
+
+<% end %>

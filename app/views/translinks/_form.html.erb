@@ -1,0 +1,30 @@
+<%= form_for(@translink) do |f| %>
+  <% if @translink.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@translink.errors.count, "error") %> prohibited this translink from being saved:</h2>
+
+      <ul>
+      <% @translink.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Angebotsort' %><br />
+    <%= f.collection_select :supplysite_id, Supplysite.all, :id, :supplysite_codename %>
+
+  </div>
+  <div class="field">
+    <%= f.label 'Nachfrageort' %><br />
+    <%= f.collection_select :demandsite_id, Demandsite.all, :id, :demandsite_codename %>
+  </div>
+  <div class="field">
+    <%= f.label 'Einheitskostensatz' %><br />
+    <%= f.text_field :unit_cost %>
+  </div>
+  <div class="actions">
+    <%= f.submit'Transportrelation anlegen oder aktualisieren' %>
+  </div>
+<% end %>

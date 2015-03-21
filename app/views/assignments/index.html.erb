@@ -1,0 +1,79 @@
+<h1>Current operating-room plan</h1>
+<p>Note that one operating room is always reserved for emergencies. This reserved room is not mentioned in the following plan.</p>
+
+<table id="assignmentslast" class="display" border="2">
+  <thead>
+  <tr bgcolor="#e2e2e2">
+    <th>Calculation</th>
+    <th>Specialty</th>
+    <th>Operating Room</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+  </tr>
+  </thead>
+<tbody>
+<% @assignments.each do |assignment| %>
+  <tr>
+    <td align="center"><%= assignment.calculation_id %></td>
+    <td align="center"><%= Specialty.where(id: assignment.specialty_id).first.name %></td>
+    <td align="center"><%= OperatingRoom.where(id: assignment.operating_room_id).first.name %></td>
+    <td align="center"><%= assignment.Mon %></td>
+    <td align="center"><%= assignment.Tue %></td>
+    <td align="center"><%= assignment.Wed %></td>
+    <td align="center"><%= assignment.Thu %></td>
+    <td align="center"><%= assignment.Fri %></td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br /><br />
+<h2>Room distribution</h2>
+<%= column_chart @assignments.map{|assign|
+    {name: Specialty.find(assign.specialty_id).name + " " + OperatingRoom.where(id: assign.operating_room_id).first.name,
+    	data: {"Mon"=>assign.Mon,"Tue"=>assign.Tue,"Wed"=>assign.Wed,"Thu"=>assign.Thu,"Fri"=>assign.Fri}
+    	}
+} %>
+<% if current_user.admin? %>
+<%= if Assignment.any?
+	link_to 'See Statistics for the last calculation...', stat_path(@assignments.first.calculation_id)
+	else "There is no operating plan at the moment!" end %>
+<% end %>
+<br /><br />
+<h2>See all assignments</h2>  
+<table id="assignments" class="display">
+  <thead>
+  <tr>
+    <th>Calculation</th>
+    <th>Specialty</th>
+    <th>Operating Room</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Chart</th>
+  </tr>
+  </thead>
+<tbody>
+<% @assignmentsall.each do |assignment| %>
+  <tr>
+    <td><%= assignment.calculation_id %></td>
+    <td><%= Specialty.where(id: assignment.specialty_id).first.name %></td>
+    <td><%= OperatingRoom.where(id: assignment.operating_room_id).first.name %></td>
+    <td><%= assignment.Mon %></td>
+    <td><%= assignment.Tue %></td>
+    <td><%= assignment.Wed %></td>
+    <td><%= assignment.Thu %></td>
+    <td><%= assignment.Fri %></td>
+    <td><%= button_to "See Chart", :controller => 'assignments', :action => 'chart', :id => assignment.calculation_id %></td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+<br />
+
+<%= link_to 'Back to operating-room planning', operationsplan_start_path %>

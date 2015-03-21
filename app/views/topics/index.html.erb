@@ -1,0 +1,30 @@
+<h1>Übersicht der Themen</h1>
+<table  id="topics" class="display">
+  <thead>
+  <tr>
+    <th>Titelcode</th>
+    <th>Titel des Themas</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @topics.each do |topic| %>
+      <tr>
+        <td><%= topic.shortcode %></td>
+        <td><%= topic.title %></td>
+        <td><%= link_to 'Zeigen', topic %></td>
+        <td><%= link_to 'Ändern', edit_topic_path(topic) %></td>
+        <td><%= link_to 'Löschen', topic, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Neues Thema anlegen', new_topic_path %><br>  <br>
+<%= link_to 'Zurück zur Seminarplanung', seminar_start_path %>
+

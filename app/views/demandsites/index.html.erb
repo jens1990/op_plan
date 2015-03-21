@@ -1,0 +1,29 @@
+<h1>Daten der Nachfrageorte</h1>
+
+<table class="table">
+  <tr>
+    <th>Code</th>
+    <th>Ort</th>
+    <th>Nachfragemenge</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @demandsites.each do |demandsite| %>
+  <tr>
+    <td><%= demandsite.site.codename %></td>
+    <td><%= demandsite.site.name %></td>
+    <td><%= demandsite.demand_quantity %></td>
+    <td><%= link_to 'Zeigen', demandsite %></td>
+    <td><%= link_to 'Ändern', edit_demandsite_path(demandsite) %></td>
+    <td><%= link_to 'Löschen', demandsite, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Neuen Nachfrageort anlegen', new_demandsite_path %> <br>  <br>
+<%= link_to 'Zurück zur Transportplanung', transport_start_path %>
+

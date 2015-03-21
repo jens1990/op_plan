@@ -1,0 +1,37 @@
+<h1>Übersicht der Praeferenzen</h1>
+<table  id="student_topics" class="display">
+  <thead>
+  <tr>
+    <th>Student</th>
+    <th>Thema</th>
+    <th>Praeferenz</th>
+    <th>Zugeordnet</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @student_topics.each do |student_topic| %>
+      <tr>
+        <td><%= student_topic.student.name %></td>
+        <td><%= student_topic.topic.title %></td>
+        <td><%= student_topic.preference %></td>
+        <td><%= student_topic.assigned %></td>
+        <td><%= link_to 'Zeigen', student_topic %></td>
+        <td><%= link_to 'Ändern', edit_student_topic_path(student_topic) %></td>
+        <td><%= link_to 'Löschen', student_topic, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<br/>
+
+<% if @objective_function_value!=nil %>
+    Der Zielfunktionswert beträgt: <%= @objective_function_value %> <br> <br>
+<% end %>
+
+<%= link_to 'Neue Praeferenz anlegen', new_student_topic_path %><br>  <br>
+<%= link_to 'Zurück zur Seminarplanung', seminar_start_path %>
+

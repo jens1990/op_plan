@@ -1,0 +1,30 @@
+<%= form_for(@operating_room) do |f| %>
+  <% if @operating_room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@operating_room.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @operating_room.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div class="field">
+      <%= f.label 'Name' %>
+      <%= f.text_field :name %>
+    </div>
+	<br />
+    <div class="field">
+      <%= f.label 'Amount of rooms' %>
+      <%= f.text_field :amount %>
+    </div>
+
+    <br /><br />
+
+  <div class="actions">
+    <%= f.submit 'Create or update the operating-room', data: {confirm: 'Warning! Previous calculations will not be correct anymore. Please create and use a new calculation to create a new operating-room plan.'} %>
+  </div>
+<% end %>

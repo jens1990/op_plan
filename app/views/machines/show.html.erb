@@ -1,0 +1,18 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Name:</b>
+  <%= best_in_place @machine, :name %>
+</p>
+
+
+<p>
+  <b>Rüstzeit:</b>
+  <%= best_in_place @machine, :overtime_cost %>
+</p>
+
+
+
+<%= link_to 'Ändern', edit_machine_path(@machine) %> |
+<%= link_to 'Zurück', machines_path %>

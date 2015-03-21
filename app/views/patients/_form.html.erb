@@ -1,0 +1,55 @@
+<%= form_for(@patient) do |f| %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+    <div class="field">
+      <%= f.label 'Name' %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Age' %><br />
+      <%= f.text_field :age %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'City' %><br />
+      <%= f.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Type' %><br />
+      <%= f.select :type_of_patient, [['Emergency', 0],['Inpatient', 1],['Outpatient', 2]] %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Startday of Stay' %><br />
+      <%= f.select :startday_of_stay, ["Mon","Tue","Wed","Thu","Fri"] %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Op Time' %><br />
+      <%= f.text_field :op_time %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Assigned Specialty' %><br />
+      <%= @specialty = Specialty.all.to_a.map{ |p| [p.name, p.id]}
+      f.select :specialty_id, @specialty %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit 'Change or update patient', data: {confirm: 'Warning! Previous calculations will not be correct anymore. Please create and use a new calculation to create a new operating-room plan.'} %>
+  </div>
+<% end %>

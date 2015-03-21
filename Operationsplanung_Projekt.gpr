@@ -1,0 +1,22 @@
+[PROJECT]
+
+[RP:SEMINAR_V1]
+1=
+
+[RP:OPERATIONSSAALPLANUNG]
+1=
+
+[MRUFILES]
+1=C:\Users\Andre\Desktop\omapps_and4\Operationssaalplanung.gms
+2=C:\Users\Andre\Dropbox\Anwendungssysteme\Seminararbeit 6. Semester Produ\SeminararbeitDaten1.inc
+
+[OPENWINDOW_1]
+FILE0=E:\Sites\omapps_and4\Operationsplan_Input.inc
+FILE1=E:\Sites\omapps_and4\Operationssaalplanung.gms
+FILE2=E:\Sites\omapps_and4\Operationssaalplanung.lst
+FILE3=E:\Sites\omapps_and4\Operationssaalplanung.lst
+MAXIM=0
+TOP=0
+LEFT=0
+HEIGHT=637
+WIDTH=1616

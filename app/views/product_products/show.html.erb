@@ -1,0 +1,26 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+
+
+<p>
+  <b>Von Produkt:</b>
+  <%= @product_product.from_product.name %>
+</p>
+
+
+<p>
+  <b>Zu Period:</b>
+  <%= @product_product.to_product.name %>
+</p>
+
+
+<p>
+  <b>Koeffizient:</b>
+  <%= best_in_place @product_product, :coefficient %>
+</p>
+
+
+
+<%= link_to 'Ändern', edit_product_product_path(@product_product) %> |
+<%= link_to 'Zurück', product_products_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@topic) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Titelcode' %><br />
+    <%= f.text_field :shortcode %>
+  </div>
+  <div class="field">
+    <%= f.label 'Titel' %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Thema anlegen oder aktualisieren' %>
+  </div>
+<% end %>

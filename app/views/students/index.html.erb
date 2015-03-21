@@ -1,0 +1,28 @@
+<h1>Übersicht der Studenten</h1>
+<table  id="students" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= link_to 'Zeigen', student %></td>
+        <td><%= link_to 'Ändern', edit_student_path(student) %></td>
+        <td><%= link_to 'Löschen', student, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Neuen Studenten anlegen', new_student_path %><br>  <br>
+<%= link_to 'Zurück zur Seminarplanung', seminar_start_path %>
+

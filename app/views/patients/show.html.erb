@@ -1,0 +1,45 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Name:</b>
+  <%= @patient.name %>
+</p>
+
+<p>
+  <b>Age:</b>
+  <%= @patient.age %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @patient.city %>
+</p>
+
+<p>
+  <b>Type of Patient:</b>
+  <%= if @patient.type_of_patient==0
+  	 "Emergency" else
+  	 if @patient.type_of_patient==1
+  	 	"Inpatient" else "Outpatient" end end %>
+</p>
+
+<p>
+  <b>Startday of Stay:</b>
+  <%= @patient.startday_of_stay %>
+</p>
+
+<p>
+  <b>Op Time:</b>
+  <%= @patient.op_time %>
+</p>
+
+<p>
+  <b>Specialty:</b>
+  <%= link_to @patient.specialty_id, specialties_path %>
+</p>
+
+<% if current_user.admin? %>
+<%= link_to 'Edit patient', edit_patient_path(@patient) %> |
+<% end %>
+<%= link_to 'Back to patient overview', patients_path %>

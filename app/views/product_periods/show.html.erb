@@ -1,0 +1,26 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+
+
+<p>
+  <b>Produkt:</b>
+  <%= @product_period.product.name %>
+</p>
+
+
+<p>
+  <b>Period:</b>
+  <%= @product_period.period.name %>
+</p>
+
+
+<p>
+  <b>Nachfrage:</b>
+  <%= best_in_place @product_period, :demand %>
+</p>
+
+
+
+<%= link_to 'Ändern', edit_product_period_path(@product_period) %> |
+<%= link_to 'Zurück', product_periods_path %>

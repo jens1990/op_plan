@@ -1,0 +1,31 @@
+<h1>Übersicht der Produkte-Maschinen-Relationen</h1>
+<table id="product_machines" class="display">
+  <thead>
+  <tr>
+    <th>Produkt</th>
+    <th>Maschine</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+
+
+  <% @product_machines.each do |product_machine| %>
+      <tr>
+        <td><%= product_machine.product.name %></td>
+        <td><%= product_machine.machine.name %></td>
+        <td><%= link_to 'Löschen', product_machine, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Neue Produkt-Maschine-Relation anlegen', new_product_machine_path %><br>  <br>
+
+
+<%= link_to 'Zurück zur Losgrößenplanung', mlclsp_start_path %>
+

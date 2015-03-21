@@ -1,0 +1,26 @@
+<%= form_for(@calculation) do |f| %>
+  <% if @calculation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@calculation.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @calculation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <div class="field">
+      <%= f.label 'Workhours' %><br />
+      <%= f.text_field :workhours_perDay %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit 'Create or update calculation' %>
+    </div>
+
+<% end %>

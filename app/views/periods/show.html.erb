@@ -1,0 +1,14 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Name:</b>
+  <%= best_in_place @period, :name %>
+</p>
+
+
+
+
+
+<%= link_to 'Ändern', edit_period_path(@period) %> |
+<%= link_to 'Zurück', periods_path %>

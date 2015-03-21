@@ -1,0 +1,95 @@
+<p>This are the demands from <strong>Calculation ID <%= Calculation.find(params[:id]).id %></strong></p>
+<h2>Patient Type emergency</h2>
+<table  id="demand0s" class="display">
+  <thead>
+  <tr>
+    <th>Specialty</th>
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Edit</th>
+    
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @demand0.each do |dem0| %>
+      <tr>
+        <td><%= Specialty.find(dem0.specialty_id).name %></td>
+        <td><%= dem0.Mon %></td>
+        <td><%= dem0.Tue %></td>
+        <td><%= dem0.Wed %></td>
+        <td><%= dem0.Thu %></td>
+        <td><%= dem0.Fri %></td>
+        <td><%= link_to 'Edit', edit_demand0_path(dem0) %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+<br/>
+<h2>Patient Type inpatient</h2>
+<table  id="demand1s" class="display">
+  <thead>
+  <tr>
+    <th>Specialty</th>
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Edit</th>
+
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @demand1.each do |dem0| %>
+      <tr>
+        <td><%= Specialty.find(dem0.specialty_id).name %></td>
+        <td><%= dem0.Mon %></td>
+        <td><%= dem0.Tue %></td>
+        <td><%= dem0.Wed %></td>
+        <td><%= dem0.Thu %></td>
+        <td><%= dem0.Fri %></td>
+        <td><%= link_to 'Edit', edit_demand1_path(dem0) %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+<br/>
+
+<h2>Patient Type outpatient</h2>
+<table  id="demand2s" class="display">
+  <thead>
+  <tr>
+    <th>Specialty</th>
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Edit</th>
+    
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @demand2.each do |dem0| %>
+      <tr>
+        <td><%= Specialty.find(dem0.specialty_id).name %></td>
+        <td><%= dem0.Mon %></td>
+        <td><%= dem0.Tue %></td>
+        <td><%= dem0.Wed %></td>
+        <td><%= dem0.Thu %></td>
+        <td><%= dem0.Fri %></td>
+        <td><%= link_to 'Edit', edit_demand2_path(dem0) %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+<%= link_to "Back to Calculations!", calculations_path %>
+

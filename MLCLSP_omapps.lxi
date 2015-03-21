@@ -1,0 +1,36 @@
+B 2 C o m p i l a t i o n
+B 326 Include File Summary
+B 338 E x e c u t i o n
+I 339 h
+I 345 z
+I 350 s
+I 355 tp
+I 360 ts
+I 365 y_0
+I 370 a
+I 379 D
+I 390 BigM
+I 392 C
+B 402 Equation Listing    SOLVE mlclsp Using MIP From line 270
+D 403 cost
+D 433 LagBil
+D 506 Kapa
+D 541 ProdRes
+B 586 Column Listing      SOLVE mlclsp Using MIP From line 270
+E 587 gamma
+E 711 ZFkt
+E 718 q
+E 856 y
+E 974 o
+B 1019 Model Statistics    SOLVE mlclsp Using MIP From line 270
+B 1035 Solution Report     SOLVE mlclsp Using MIP From line 270
+F 1069 cost
+F 1077 LagBil
+F 1102 Kapa
+F 1115 ProdRes
+G 1135 gamma
+G 1160 ZFkt
+G 1166 q
+G 1191 y
+G 1216 o
+B 1236 E x e c u t i o n

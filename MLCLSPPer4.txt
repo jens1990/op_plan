@@ -1,0 +1,14 @@
+Produktionsprogramm MLCLSP 4 Perioden
+
+Perioden:        t1          t2          t3          t4
+
+Produkt 1:       10.00        0.00       80.00        0.00
+
+Produkt 2:        0.00      100.00       20.00        0.00
+
+Produkt 3:       10.00      130.00        0.00        0.00
+
+Produkt 4:        0.00        0.00       60.00        0.00
+
+Produkt 5:      110.00       10.00        0.00        0.00
+

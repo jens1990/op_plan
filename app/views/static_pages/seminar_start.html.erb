@@ -1,0 +1,26 @@
+<% provide(:title, 'Seminarplanung') %>
+<h1>Zuordnung von Studenten(teams) und Seminarthemen</h1>
+<p>
+  Auf dieser Seite startet (für angemeldete Nutzer) die Seminarplanung!    <br>     <br>
+
+  <% if signed_in? %>
+
+      <%= link_to "Hier geht es zur Verwaltung der Themen!", topics_path %><br>
+      <%= link_to "Hier geht es zur Verwaltung der Studenten!", students_path %><br>
+      <%= link_to "Hier geht es zur Verwaltung der Teams! (ohne Fkt!)", teams_path %><br>
+      <%= link_to "Verwaltung der Studenten-Themen-Kombinationen!", student_topics_path %>
+      </p>
+
+      <br>
+
+
+      <p>
+
+      Nach der Eingabe der Daten können wir nun endlich optimieren!
+      <%= button_to "Lösche die Zuordnung", :controller => 'student_topics', :action => 'erase_assignments' %>
+      <%= button_to "Optimiere", :controller => 'student_topics', :action => 'optimize' %>
+      <%= button_to "Lies die Zuordnung ein", :controller => 'student_topics', :action => 'read_assignments' %>
+      <%= button_to "Lies den Zielfunktionswert ein", :controller => 'student_topics', :action => 'read_and_show_ofv' %>
+      </p>
+
+  <% end %>

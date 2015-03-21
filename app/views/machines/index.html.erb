@@ -1,0 +1,31 @@
+<h1>Übersicht der Maschinen</h1>
+<table id="machines" class="display">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Überstundenkostensatz</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  <% @machines.each do |machine| %>
+      <tr>
+        <td><%= machine.name %></td>
+        <td><%= machine.overtime_cost %></td>
+        <td><%= link_to 'Zeigen', machine %></td>
+        <td><%= link_to 'Ändern', edit_machine_path(machine) %></td>
+        <td><%= link_to 'Löschen', machine, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Neue Maschine anlegen', new_machine_path %><br>  <br>
+<%= link_to 'Zurück zur Losgrößenplanung', mlclsp_start_path %>
+

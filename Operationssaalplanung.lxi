@@ -1,0 +1,55 @@
+B 2 C o m p i l a t i o n
+B 294 Include File Summary
+B 308 Equation Listing    SOLVE Operationssaal Using MIP From line 197
+D 309 Zfkt
+D 448 Saalzuw
+D 466 Kap
+D 492 Zeitraum
+D 534 Verstat
+D 552 Veramb
+D 570 unmetstat
+D 582 unmetamb
+D 594 Inakt
+D 606 Effizienz
+D 624 Arbeit
+D 641 Zuord
+D 653 Notf
+B 667 Column Listing      SOLVE Operationssaal Using MIP From line 197
+E 668 Ziel
+E 676 x
+E 702 y
+E 728 z
+E 755 w
+E 782 u
+E 805 v
+E 828 b
+E 851 h
+E 862 p
+E 879 q
+B 905 Model Statistics    SOLVE Operationssaal Using MIP From line 197
+B 921 Solution Report     SOLVE Operationssaal Using MIP From line 197
+F 958 Zfkt
+F 967 Saalzuw
+F 982 Kap
+F 1008 Zeitraum
+F 1034 Verstat
+F 1060 Veramb
+F 1086 unmetstat
+F 1112 unmetamb
+F 1135 Inakt
+F 1144 Effizienz
+F 1153 Arbeit
+F 1164 Zuord
+F 1189 Notf
+G 1209 Ziel
+G 1215 x
+G 1241 y
+G 1267 z
+G 1373 w
+G 1479 u
+G 1505 v
+G 1531 b
+G 1557 h
+G 1563 p
+G 1573 q
+B 1590 E x e c u t i o n

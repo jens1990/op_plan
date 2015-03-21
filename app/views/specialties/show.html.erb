@@ -1,0 +1,17 @@
+<!--<p id="notice"><%= notice %></p> -->
+
+
+<p>
+  <b>Shortcode:</b>
+  <%= @specialty.shortcode %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @specialty.name %>
+</p>
+
+
+
+<%= link_to 'Edit specialty', edit_specialty_path(@specialty) %> |
+<%= link_to 'Back to specialty overview', specialties_path %>

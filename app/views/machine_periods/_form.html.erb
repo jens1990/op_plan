@@ -1,0 +1,36 @@
+<%= form_for(@machine_period) do |f| %>
+    <% if @machine_period.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@machine_period.errors.count, "error") %> prohibited this machine_period from being
+            saved:</h2>
+
+          <ul>
+            <% @machine_period.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label 'Maschine  ' + @machine_period.machine.name %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Period  ' + @machine_period.period.name %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Kapazität' %>
+      <%= f.text_field :capacity %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Überstunden' %>
+      <%= f.text_field :overtime %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Maschine-Periode anlegen oder aktualisieren' %>
+    </div>
+<% end %>
