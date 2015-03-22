@@ -139,25 +139,22 @@ class AssignmentsController < ApplicationController
 
 
     def optimize
- #     @emroom = OperatingRoom.where(emergency: true)
-  #    if @emroom.empty?
-  #      redirect_to calculations_path
-  #      flash[:not_available] = "Error: No emergency room selected"
-  #      else
 
       calcid = Calculation.find(params[:id]).id
         # Ueberpruefung ob schon aggregiert wurde:
         if !Demand0.where(calculation_id: calcid).empty?
-          # Ueberpruefung ob es neue Specialt seit dem letzten Aggregieren gibt
+          # Ueberpruefung ob es eine neue Specialty seit dem letzten Aggregieren gibt
           if !Demand1.where(calculation_id: calcid).where(specialty_id: Specialty.last.id).empty?
       
       # Specialty Demand
       @demand1 = Demand1.where(calculation_id: calcid)
- #     @demand2 = Demand2.where(calculation_id: calcid)
+ 
+      # Fuer jede Specialty wird ueberprueft, ob etwas nicht gleich null ist an allen 5 Tagen. Patienten mit dem Typ 1
       empt = 1
       @demand1.each do |a|
           if a.Mon.nonzero? or a.Tue.nonzero? or a.Wed.nonzero? or a.Thu.nonzero? or a.Fri.nonzero?
           else
+            # Selbe Pruefung nur fuer Patienten Typ 2  
             @spect = Demand2.where(calculation_id: calcid).where(specialty_id: a.specialty_id)
 
             if @spect.first.Mon.nonzero? or @spect.first.Tue.nonzero? or @spect.first.Wed.nonzero? or @spect.first.Thu.nonzero? or @spect.first.Fri.nonzero?
@@ -171,10 +168,9 @@ class AssignmentsController < ApplicationController
         flash[:not_available] = "No demands for inpatients and outpatients in at least one specialty!"
       else       
       
-      # Hier geht der alte Aggregate los
-      
-
-     #Delete
+      # Hier geht nun die Optimierung los, da alle Bedingungen erfuellt wurden
+     
+     #Delete aller alten Dateien
       if File.exist?("Operationsplan_Input.inc")
         File.delete("Operationsplan_Input.inc")
       end
@@ -305,7 +301,7 @@ class AssignmentsController < ApplicationController
       printf(f, "\t\t")
       days.each { |d| printf(f,  d.to_s + "\t\t") }
       printf(f, "\n")
-      # nicht alle Specialties
+
       @specialty = Specialty.all
       @specialty.each do |op|
       printf(f, op.shortcode.to_s + "\t\t")
@@ -354,14 +350,14 @@ class AssignmentsController < ApplicationController
 
       f.close
 
-# Hier muss noch der Pfad noch aus einer Variable gezogen werden!
+# Hier wird der Pfad aus der Variable gezogen
 
         if $gamspath.nil?
         system "C:\\GAMS\\win64\\24.1\\gams Operationssaalplanung"
         else
         system $gamspath
         end
- # neue While Funktion
+ # While Schleife fuer das Warten bis ein Ergebnis vorliegt
      while !File.exists?("Success.txt") do
      sleep(1)
      end
@@ -390,7 +386,7 @@ class AssignmentsController < ApplicationController
         speccode = Specialty.where(shortcode: sa3).first.id
         opr = OperatingRoom.where(name: sa2).first.id
         
-        #Ueberpruefen ob in Zeile die gerade gesuchte Specialty steht und Operating Room               
+        #Ueberpruefen ob in Zeile die gerade gesuchte Specialty steht               
         if speccode == spec.id and opr == rs.operating_room_id
            
            if sa1 == 'Mon'
@@ -426,7 +422,7 @@ class AssignmentsController < ApplicationController
       end  
      end
 
-        #Statistiken
+        #Statistiken einlesen
          fi=File.open("Saalzuordnung_Statistik.txt", "r")
         fi.each do |line|
         # printf(f,line)
@@ -464,11 +460,7 @@ class AssignmentsController < ApplicationController
         redirect_to calculations_path
         flash[:started] = "Please aggregate first!"
       end
-     #   end
- #   else
-  #    redirect_to assignments_path
-  #    flash[:not_available] = "Assignment already calculated!"
-   # end
+     
  end
 
 
@@ -479,13 +471,17 @@ class AssignmentsController < ApplicationController
         File.delete("test.txt")
      end
    testv=0
+   # Wenn der Gamspfad null ist, wird der Standardpfad eingetragen
    if $gamspath.nil?
         $gamspath = "C:\\GAMS\\win64\\24.1\\gams Operationssaalplanung"
         else
         end
     if $gamspath.include? "Operationssaalplanung"
+      # Operationsplanung wird durch Testpfad ersetzt
       system $gamspath.sub! 'Operationssaalplanung', 'Testpfad'  
+      # 2 Sekunden warten
       sleep(2)
+      # Wenn txt existiert wird Variable auf 1 gesetzt
         if File.exist?("test.txt")
           testv=1
           $gamspath.sub! 'Testpfad', 'Operationssaalplanung'
@@ -510,4 +506,4 @@ end
         store_location
         redirect_to signin_path, notice: "Bitte melden Sie sich an."
       end
-    end  
+    end

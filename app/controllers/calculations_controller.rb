@@ -93,10 +93,11 @@ class CalculationsController < ApplicationController
   end
 
 
-  #Befehl zum automatischen Befüllen der leeren Calculation Spalten
+  #Befehl zum automatischen Befuellen der leeren Calculation Spalten
 
   def aggregate
     calc_id = Calculation.find(params[:id]).id
+    # loeschen alter Werte
     Demand0.where(calculation_id:  calc_id).delete_all
     Demand1.where(calculation_id:  calc_id).delete_all
     Demand2.where(calculation_id:  calc_id).delete_all
@@ -110,6 +111,7 @@ class CalculationsController < ApplicationController
     dem_thu = 0
     dem_fri = 0
 
+#   Fuer alle Specialties summiere die OP Zeiten der Patienten Typ 0 
       @specialty.each do |n|
         dem_mon = Patient.where(:specialty_id => [Specialty.find(n).id]).where(:startday_of_stay =>'Mon').where(:type_of_patient =>'0').sum(:op_time)
         dem_tue = Patient.where(:specialty_id => [Specialty.find(n).id]).where(:startday_of_stay =>'Tue').where(:type_of_patient =>'0').sum(:op_time)
@@ -136,10 +138,6 @@ class CalculationsController < ApplicationController
         dem_fri = Patient.where(:specialty_id => [Specialty.find(o).id]).where(:startday_of_stay =>'Fri').where(:type_of_patient =>'2').sum(:op_time)
         Demand2.create!(calculation_id: calc_id, specialty_id: Specialty.find(o).id, Mon: dem_mon, Tue: dem_tue, Wed: dem_wed, Thu: dem_thu, Fri: dem_fri)
       end
-
-
-
-
 
       flash[:started] = "Demands calculated!"
       redirect_to calculations_path

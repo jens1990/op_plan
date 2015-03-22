@@ -23,16 +23,9 @@ class Demand1sController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @demand1.errors, status: :unprocessable_entity }
       end
-    end
-   
+    end   
   end
-
-
-
-
 end
-
-
 private
 
   def signed_in_user
